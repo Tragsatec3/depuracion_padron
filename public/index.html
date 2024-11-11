@@ -82,7 +82,7 @@
       const lng = parseFloat(getQueryParam('lng')) || -5.033001;  
       const x = parseFloat(getQueryParam('x'));                
       const y = parseFloat(getQueryParam('y'));                
-      const zoom = parseInt(getQueryParam('zoom')) || 9;            
+      const zoom = parseInt(getQueryParam('zoom')) || 8;            
 
       let map;
       let frozenCoords = false;
@@ -167,12 +167,12 @@
         "Callejero": callejero,
         "Google Maps": googleLayer,
         "Open Street Map": osmLayer,
-        "Catastro": catastroLayer,
         "Imagen PNOA": pnoaLayer
       };
       
 // Añadir capa de provincia y municipios
 var overlay = {
+  "Catastro": catastroLayer,
   "Provincias": L.geoJson(provincias, { 
     style: { "color": "#EB5B00", "weight": 4, "opacity": 0.8, "fillOpacity": 0 }
   }).addTo(map),
