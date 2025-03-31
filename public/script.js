@@ -1,4 +1,4 @@
-
+let map;
 
     // Capa OSM (OpenStreetMap)
     var osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
