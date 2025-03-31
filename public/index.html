@@ -58,7 +58,6 @@
 </head>
 <body>
 
-
   <div id="map"></div>
   <!-- Cuadro para mostrar solo las coordenadas en ETRS89 UTM -->
   <div id="coordinates">
@@ -78,8 +77,8 @@
       }
 
       const address = getQueryParam('address');
-      const lat = parseFloat(getQueryParam('lat')) || 41.6644;
-      const lng = parseFloat(getQueryParam('lng')) || -2.5458;  
+      const lat = parseFloat(getQueryParam('lat')) || 40.9634;  // Coordenadas de Salamanca
+      const lng = parseFloat(getQueryParam('lng')) || -5.6631; // Coordenadas de Salamanca  
       const x = parseFloat(getQueryParam('x'));                
       const y = parseFloat(getQueryParam('y'));                
       const zoom = parseInt(getQueryParam('zoom')) || 9;
@@ -91,7 +90,7 @@
         var wgsCoords = proj4('+proj=utm +zone=30 +datum=ETRS89 +units=m +no_defs', 'EPSG:4326', [x, y]);
         map = L.map('map').setView([wgsCoords[1], wgsCoords[0]], zoom);
       } else {
-        map = L.map('map').setView([lat, lng], zoom);
+        map = L.map('map').setView([lat, lng], zoom);  // Centrado en las coordenadas de Salamanca
       }
 
       // Capa OSM (OpenStreetMap)
@@ -171,24 +170,24 @@
         "Imagen PNOA": pnoaLayer
       };
       
-// Añadir capa de provincia y municipios
-var overlay = {
-  "Provincias": L.geoJson(provincias, { 
-    style: { "color": "#EB5B00", "weight": 4, "opacity": 0.8 }
-  }).addTo(map),
-  "Municipios": L.geoJson(municipios, { 
-    style: { "color": "#3182bd", "weight": 1, "opacity": 3.5 },
-    onEachFeature: function(feature, layer) {
-      if (feature.properties && feature.properties.D_MUN) {
-        layer.bindTooltip(feature.properties.D_MUN, {
-          permanent: false,
-          direction: "top",
-          className: "municipio-css"
-        });
-      }
-    }
-  }).addTo(map)
-};
+      // Añadir capa de provincia y municipios
+      var overlay = {
+        "Provincias": L.geoJson(provincias, { 
+          style: { "color": "#EB5B00", "weight": 4, "opacity": 0.8 }
+        }).addTo(map),
+        "Municipios": L.geoJson(municipios, { 
+          style: { "color": "#3182bd", "weight": 1, "opacity": 3.5 },
+          onEachFeature: function(feature, layer) {
+            if (feature.properties && feature.properties.D_MUN) {
+              layer.bindTooltip(feature.properties.D_MUN, {
+                permanent: false,
+                direction: "top",
+                className: "municipio-css"
+              });
+            }
+          }
+        }).addTo(map)
+      };
 
       L.control.layers(baseMaps, overlay, { position: 'topright' }).addTo(map);
       L.control.scale({ metric: true, imperial: false }).addTo(map);
