@@ -1,5 +1,8 @@
-let map;
 
+    var map = L.map('map', {
+      center: [41.60, -2.4649],
+      zoom: 10
+      });
     // Capa OSM (OpenStreetMap)
     var osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 40,
