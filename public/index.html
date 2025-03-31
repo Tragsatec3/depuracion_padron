@@ -90,7 +90,7 @@
         var wgsCoords = proj4('+proj=utm +zone=30 +datum=ETRS89 +units=m +no_defs', 'EPSG:4326', [x, y]);
         map = L.map('map').setView([wgsCoords[1], wgsCoords[0]], zoom);
       } else {
-        map = L.map('map').setView([lat, lng], zoom);  // Centrado en las coordenadas de Salamanca
+        map = L.map('map').setView([lat, lng], zoom);
       }
 
       // Capa OSM (OpenStreetMap)
@@ -174,20 +174,20 @@
 var overlay = {
     "Provincias": L.geoJson(provincias, { 
         style: { 
-            "color": "#EB5B00", // Color del borde
-            "weight": 4, // Grosor del borde
-            "opacity": 0.8, // Opacidad del borde
-            "fillColor": "#EB5B00", // El color de relleno (aunque no se verá)
-            "fillOpacity": 0 // Esto hace que el relleno sea completamente transparente
+            "color": "#EB5B00", 
+            "weight": 4, 
+            "opacity": 0.8,
+            "fillColor": "#EB5B00",
+            "fillOpacity": 0
         }
     }).addTo(map),
     "Municipios": L.geoJson(municipios, { 
         style: { 
-            "color": "#3182bd", // Color del borde
-            "weight": 1, // Grosor del borde
-            "opacity": 3.5, // Opacidad del borde
-            "fillColor": "#3182bd", // El color de relleno (aunque no se verá)
-            "fillOpacity": 0 // Esto hace que el relleno sea completamente transparente
+            "color": "#3182bd", 
+            "weight": 1, 
+            "opacity": 3.5, 
+            "fillColor": "#3182bd",
+            "fillOpacity": 0
         },
         onEachFeature: function(feature, layer) {
             if (feature.properties && feature.properties.D_MUN) {
