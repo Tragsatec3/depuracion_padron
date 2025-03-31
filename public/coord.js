@@ -12,7 +12,7 @@
         const y = parseFloat(getQueryParam('y'));                
         const zoom = parseInt(getQueryParam('zoom')) || 9;
     
-        let map;
+        
         let frozenCoords = false;
     
         if (!isNaN(x) && !isNaN(y)) {
