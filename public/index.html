@@ -171,23 +171,36 @@
       };
       
       // Añadir capa de provincia y municipios
-      var overlay = {
-        "Provincias": L.geoJson(provincias, { 
-          style: { "color": "#EB5B00", "weight": 4, "opacity": 0.8 }
-        }).addTo(map),
-        "Municipios": L.geoJson(municipios, { 
-          style: { "color": "#3182bd", "weight": 1, "opacity": 3.5 },
-          onEachFeature: function(feature, layer) {
+var overlay = {
+    "Provincias": L.geoJson(provincias, { 
+        style: { 
+            "color": "#EB5B00", // Color del borde
+            "weight": 4, // Grosor del borde
+            "opacity": 0.8, // Opacidad del borde
+            "fillColor": "#EB5B00", // El color de relleno (aunque no se verá)
+            "fillOpacity": 0 // Esto hace que el relleno sea completamente transparente
+        }
+    }).addTo(map),
+    "Municipios": L.geoJson(municipios, { 
+        style: { 
+            "color": "#3182bd", // Color del borde
+            "weight": 1, // Grosor del borde
+            "opacity": 3.5, // Opacidad del borde
+            "fillColor": "#3182bd", // El color de relleno (aunque no se verá)
+            "fillOpacity": 0 // Esto hace que el relleno sea completamente transparente
+        },
+        onEachFeature: function(feature, layer) {
             if (feature.properties && feature.properties.D_MUN) {
-              layer.bindTooltip(feature.properties.D_MUN, {
-                permanent: false,
-                direction: "top",
-                className: "municipio-css"
-              });
+                layer.bindTooltip(feature.properties.D_MUN, {
+                    permanent: false,
+                    direction: "top",
+                    className: "municipio-css"
+                });
             }
-          }
-        }).addTo(map)
-      };
+        }
+    }).addTo(map)
+};
+
 
       L.control.layers(baseMaps, overlay, { position: 'topright' }).addTo(map);
       L.control.scale({ metric: true, imperial: false }).addTo(map);
