@@ -166,12 +166,12 @@
         "Callejero": callejero,
         "Google Maps": googleLayer,
         "Open Street Map": osmLayer,
-        "Catastro": catastroLayer,
         "Imagen PNOA": pnoaLayer
       };
       
       // Añadir capa de provincia y municipios
 var overlay = {
+  "Catastro": catastroLayer,
     "Provincias": L.geoJson(provincias, { 
         style: { 
             "color": "#EB5B00", 
