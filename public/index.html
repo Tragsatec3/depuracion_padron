@@ -131,6 +131,12 @@
         attribution: '© Instituto Geográfico Nacional'
       });
 
+      //Google satellite
+      var googleSatellite = L.tileLayer('https://mt1.google.com/vt/lyrs=s&hl=es&z={z}&x={x}&y={y}', {
+        maxZoom: 40,
+        attribution: '&copy; <a href="https://www.google.com/intl/es/help/terms_maps.html">Google Maps</a>'
+      });
+
       // Obtener información de la parcela
       map.on('click', function (e) {
         const url = `/api/proxy?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureInfo&LAYERS=Catastro&QUERY_LAYERS=Catastro&INFO_FORMAT=text/xml&SRS=EPSG:4326&BBOX=${map.getBounds().toBBoxString()}&WIDTH=${map.getSize().x}&HEIGHT=${map.getSize().y}&X=${Math.floor(e.containerPoint.x)}&Y=${Math.floor(e.containerPoint.y)}`;
@@ -166,7 +172,8 @@
         "Callejero": callejero,
         "Google Maps": googleLayer,
         "Open Street Map": osmLayer,
-        "Imagen PNOA": pnoaLayer
+        "Imagen PNOA": pnoaLayer,
+        "Imagen Satélite Google": googleSatellite
       };
       
       // Añadir capa de provincia y municipios
